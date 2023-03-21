@@ -62,16 +62,12 @@ ul[role="tablist"] {
 
 .react-tabs__tab-panel,
 div[role="tabpanel"] {
-  // display: none;
-  // opacity: 0;
   transform: translateX(100%);
   transition-property: transform;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 
   &.is-selected {
-    // opacity: 1;
     transform: translateX(0%);
-    // display: block;
   }
 }

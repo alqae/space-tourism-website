@@ -2,19 +2,19 @@
 // see: https://getbootstrap.com/docs/5.2/utilities/flex/ for more utilities.
 
 .container-fluid {
-  // @include px(3);
+  @include px(3);
   max-width: to-rem(2400);
 
   @include media-breakpoint-up(sm) {
-    // @include px(5);
+    @include px(5);
   }
 
   @include media-breakpoint-up(lg) {
-    // @include px(8);
+    @include px(8);
   }
 
   @include media-breakpoint-up(xxl) {
-    // @include px(10);
+    @include px(10);
   }
 
   // We over-ride the global .row padding.
@@ -29,86 +29,4 @@
       --bs-gutter-x: 2rem;
     }
   }
-}
-
-// @mixin make-container($gutter: $container-padding-x) {
-//   --#{$prefix}gutter-x: #{$gutter};
-//   --#{$prefix}gutter-y: 0;
-//   width: 100%;
-//   padding-right: calc(var(--#{$prefix}gutter-x) * .5); // stylelint-disable-line function-disallowed-list
-//   padding-left: calc(var(--#{$prefix}gutter-x) * .5); // stylelint-disable-line function-disallowed-list
-//   margin-right: auto;
-//   margin-left: auto;
-// }
-
-// Container
-// @include make-container($gutter: $container-padding-x);
-
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-
-  @include media-breakpoint-down(sm, $grid-breakpoints) {
-    max-width: map-get($container-max-widths, sm);
-  }
-
-  @include media-breakpoint-down(md, $grid-breakpoints) {
-    max-width: map-get($container-max-widths, md);
-  }
-
-  @include media-breakpoint-down(lg, $grid-breakpoints) {
-    max-width: map-get($container-max-widths, lg);
-  }
-
-  @include media-breakpoint-down(xl, $grid-breakpoints) {
-    max-width: map-get($container-max-widths, xl);
-  }
-
-  @include media-breakpoint-down(xxl, $grid-breakpoints) {
-    max-width: map-get($container-max-widths, xxl);
-  }
-}
-
-.highlight {
-  color: map-get($theme-colors, primary) !important;
-}
-
-img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.w-100 {
-  width: 100%;
-}
-
-.fw-normal {
-  font-weight: 400;
-}
-
-.fw-medim {
-  font-weight: 500;
-}
-
-.fw-semi-medim {
-  font-weight: 500;
-}
-
-.fw-bold {
-  font-weight: 700;
-}
-
-.debug {
-  border: 1px solid red;
-}
-
-body {
-  scroll-behavior: smooth;
-}
-
-hr {
-  border-color: map-get($grays, gray-600);
 }

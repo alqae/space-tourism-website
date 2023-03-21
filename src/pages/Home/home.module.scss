@@ -1,5 +1,4 @@
-@import "../../styles/base/fonts";
-@import "../../styles/base/helpers";
+@import "../../styles/init";
 
 .box {
   @include media-breakpoint-up(sm) {
@@ -8,26 +7,26 @@
 
   span.eyebrow {
     display: block;
-    @include font(eyebrow, small, map-get($theme-colors, primary));
+    // @include font(eyebrow, small, map-get($theme-colors, primary));
 
     @include media-breakpoint-up(sm) {
-      @include font(eyebrow, normal, map-get($theme-colors, primary));
+      // @include font(eyebrow, normal, map-get($theme-colors, primary));
     }
 
     @include media-breakpoint-up(md) {
-      @include font(eyebrow, large, map-get($theme-colors, primary));
+      // @include font(eyebrow, large, map-get($theme-colors, primary));
     }
   }
 
   h1 {
-    @include font(headings, xl, $color-white);
+    // @include font(headings, xl, $color-white);
   }
 
   p {
-    @include font(body, md, map-get($theme-colors, primary));
+    // @include font(body, md, map-get($theme-colors, primary));
 
     @include media-breakpoint-down(sm) {
-      @include font(body, sm, map-get($theme-colors, primary));
+      // @include font(body, sm, map-get($theme-colors, primary));
     }
   }
 }

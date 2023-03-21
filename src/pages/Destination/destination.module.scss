@@ -1,5 +1,4 @@
-@import "../../styles/base/fonts";
-@import "../../styles/base/helpers";
+@import "../../styles/init";
 
 .imageWrapper {
   margin-bottom: 26px;
@@ -45,7 +44,7 @@ span.eyebrow:has(b) {
 }
 
 h6 {
-  @include font(eyebrow, small, map-get($theme-colors, primary));
+  // @include font(eyebrow, small, map-get($theme-colors, primary));
 }
 
 .box {
@@ -57,26 +56,26 @@ h6 {
 
   span.eyebrow {
     display: block;
-    @include font(eyebrow, small, map-get($theme-colors, primary));
+    // @include font(eyebrow, small, map-get($theme-colors, primary));
 
     @include media-breakpoint-up(sm) {
-      @include font(eyebrow, normal, map-get($theme-colors, primary));
+      // @include font(eyebrow, normal, map-get($theme-colors, primary));
     }
 
     @include media-breakpoint-up(md) {
-      @include font(eyebrow, large, map-get($theme-colors, primary));
+      // @include font(eyebrow, large, map-get($theme-colors, primary));
     }
   }
 
   h2 {
-    @include font(headings, lg, $color-white);
+    // @include font(headings, lg, $color-white);
   }
 
   p {
-    @include font(body, md, map-get($theme-colors, primary));
+    // @include font(body, md, map-get($theme-colors, primary));
 
     @include media-breakpoint-down(sm) {
-      @include font(body, sm, map-get($theme-colors, primary));
+      // @include font(body, sm, map-get($theme-colors, primary));
     }
   }
 }

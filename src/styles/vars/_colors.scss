@@ -1,0 +1,71 @@
+// Adjust or add Colors:
+$light-purple: (
+  light-purple-100: #F1F3FD,
+  light-purple-200: #E8EBFC,
+  light-purple-300: #DEE2FB,
+  light-purple-400: #D7DCFA,
+  light-purple-500: #D0D6F9,
+  light-purple-600: #CBD1F8,
+  light-purple-700: #C4CCF7,
+  light-purple-800: #BEC6F6,
+  light-purple-900: #B3BCF5,
+) !default;
+
+// $dark: (
+//   dark-100: #B6B6B9,
+//   dark-200: #85868B,
+//   dark-300: #54565D,
+//   dark-400: #30313A,
+//   dark-500: #0B0D17,
+//   dark-600: #0A0B14,
+//   dark-700: #080911,
+//   dark-800: #06070D,
+//   dark-900: #030307,
+// ) !default;
+
+$grays: (
+  gray-100: #E0E0E0,
+  gray-200: #CBCBCB,
+  gray-300: #B6B6B6,
+  gray-400: #A7A7A7,
+  gray-500: #979797,
+  gray-600: #8F8F8F,
+  gray-700: #848484,
+  gray-800: #7A7A7A,
+  gray-900: #696969,
+) !default;
+
+$states: (
+  "info": #2F80ED,
+  "success": #27AE60,
+  "warning": #E2B93B,
+  "error": #EB5757,
+) !default;
+
+$filters: (
+  "primary": invert(28%) sepia(46%) saturate(5276%) hue-rotate(205deg)
+    brightness(97%) contrast(104%),
+  "reverse": invert(100%) sepia(95%) saturate(17%) hue-rotate(273deg)
+    brightness(105%) contrast(103%),
+  "gray-1100": invert(1%) sepia(7%) saturate(2698%) hue-rotate(205deg)
+    brightness(81%) contrast(97%),
+) !default;
+
+// Example usage:
+$color-white: #FFFFFF;
+$color-black: #0B0D17;
+$color-clear: transparent;
+$color-beige: #FAF7F2;
+$color-gray: #979797;
+
+// Map to Bootstrap colors:
+$theme-colors: (
+  "primary":   map-get($light-purple, light-purple-500),
+  "secondary": $color-black,
+  "success":   map-get($states, success),
+  "info":      map-get($states, info),
+  "warning":   map-get($states, warning),
+  "danger":    map-get($states, error),
+  "light":     $color-white,
+  "dark":      $color-black,
+);

@@ -2,41 +2,41 @@
 // See also ./vars/_typography.scss.
 
 @font-face {
-  font-family: $font-family-barlow;
-  src: url("../../public/fonts/Barlow/Barlow-Regular.woff2") format("woff2"),
-    url("../../public/fonts/Barlow/Barlow-Regular.woff") format("woff");
+  font-family: "Barlow";
+  src: url("../assets/fonts/Barlow/Barlow-Regular.woff2") format("woff2"),
+    url("../assets/fonts/Barlow/Barlow-Regular.woff") format("woff");
   font-weight: normal;
   font-display: fallback;
 }
 
 @font-face {
-  font-family: $font-family-barlow;
-  src: url("../../public/fonts/Barlow/Barlow-Bold.woff2") format("woff2"),
-    url("../../public/fonts/Barlow/Barlow-Bold.woff") format("woff");
+  font-family: "Barlow";
+  src: url("../assets/fonts/Barlow/Barlow-Bold.woff2") format("woff2"),
+    url("../assets/fonts/Barlow/Barlow-Bold.woff") format("woff");
   font-weight: bold;
   font-display: fallback;
 }
 
 @font-face {
-  font-family: $font-family-barlow-condensed;
-  src: url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Regular.woff2") format("woff2"),
-    url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Regular.woff") format("woff");
+  font-family: "Barlow Condensed";
+  src: url("../assets/fonts/Barlow_Condensed/BarlowCondensed-Regular.woff2") format("woff2"),
+    url("../assets/fonts/Barlow_Condensed/BarlowCondensed-Regular.woff") format("woff");
   font-weight: normal;
   font-display: fallback;
 }
 
 @font-face {
-  font-family: $font-family-barlow-condensed;
-  src: url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Bold.woff2") format("woff2"),
-    url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Bold.woff") format("woff");
+  font-family: "Barlow Condensed";
+  src: url("../assets/fonts/Barlow_Condensed/BarlowCondensed-Bold.woff2") format("woff2"),
+    url("../assets/fonts/Barlow_Condensed/BarlowCondensed-Bold.woff") format("woff");
   font-weight: bold;
   font-display: fallback;
 }
 
 @font-face {
-  font-family: $font-family-bellefair;
-  src: url("../../public/fonts/Bellefair/Bellefair-Regular.woff2") format("woff2"),
-    url("../../public/fonts/Bellefair/Bellefair-Regular.woff") format("woff");
+  font-family: "Bellefair";
+  src: url("../assets/fonts/Bellefair/Bellefair-Regular.woff2") format("woff2"),
+    url("../assets/fonts/Bellefair/Bellefair-Regular.woff") format("woff");
   font-weight: normal;
   font-display: fallback;
 }
@@ -59,20 +59,20 @@ p:only-child {
 
 // Default font sizing for headings
 h2 {
-  @include font(headings, md);
+  // @include font(headings, md);
   margin-bottom: 0.5em;
 }
 
 h3 {
-  @include font(headings, sm);
+  // @include font(headings, sm);
   margin-bottom: 1rem;
 }
 
 // blockquote {
-//   @include font(blockquote, all, $color-black);
+//   // @include font(blockquote, all, $color-black);
 
 //   + figcaption {
-//     @include font(bodycopy, md, $mc-blue);
+//     // @include font(bodycopy, md, $mc-blue);
 //   }
 // }
 

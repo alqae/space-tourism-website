@@ -1,7 +1,4 @@
-@import "../../styles/base/fonts";
-// @import "../../styles/base/variables";
-// @import "../../styles/base/helpers";
-@import "../../styles/base/colors";
+@import "../../styles/init";
 
 .navbar {
   display: flex;
@@ -124,7 +121,7 @@
       }
 
       span {
-        @include font(navbar, menu, $color-white);
+        // @include font(navbar, menu, $color-white);
 
         b {
           font-weight: bold;
