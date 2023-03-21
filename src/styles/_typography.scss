@@ -1,0 +1,88 @@
+// Global typography styles.
+// See also ./vars/_typography.scss.
+
+@font-face {
+  font-family: $font-family-barlow;
+  src: url("../../public/fonts/Barlow/Barlow-Regular.woff2") format("woff2"),
+    url("../../public/fonts/Barlow/Barlow-Regular.woff") format("woff");
+  font-weight: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-barlow;
+  src: url("../../public/fonts/Barlow/Barlow-Bold.woff2") format("woff2"),
+    url("../../public/fonts/Barlow/Barlow-Bold.woff") format("woff");
+  font-weight: bold;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-barlow-condensed;
+  src: url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Regular.woff2") format("woff2"),
+    url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Regular.woff") format("woff");
+  font-weight: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-barlow-condensed;
+  src: url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Bold.woff2") format("woff2"),
+    url("../../public/fonts/Barlow_Condensed/BarlowCondensed-Bold.woff") format("woff");
+  font-weight: bold;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-bellefair;
+  src: url("../../public/fonts/Bellefair/Bellefair-Regular.woff2") format("woff2"),
+    url("../../public/fonts/Bellefair/Bellefair-Regular.woff") format("woff");
+  font-weight: normal;
+  font-display: fallback;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @include media-breakpoint-down(md) {
+    font-size: 0.875rem; // 14px
+    line-height: 1.8;
+  }
+}
+
+p:only-child {
+  margin-bottom: 0;
+}
+
+// Default font sizing for headings
+h2 {
+  @include font(headings, md);
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  @include font(headings, sm);
+  margin-bottom: 1rem;
+}
+
+// blockquote {
+//   @include font(blockquote, all, $color-black);
+
+//   + figcaption {
+//     @include font(bodycopy, md, $mc-blue);
+//   }
+// }
+
+// Spacing between paragraphs and headings (for WYSIWYG content)
+// p {
+//   + h2,
+//   + h3,
+//   + h4,
+//   + h5,
+//   + h6 {
+//     @include mt(8);
+//   }
+// }

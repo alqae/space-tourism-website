@@ -1,0 +1,93 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/helpers";
+
+.box {
+  @include media-breakpoint-up(sm) {
+    max-width: 445px;
+  }
+
+  span.eyebrow {
+    display: block;
+    @include font(eyebrow, small, map-get($theme-colors, primary));
+
+    @include media-breakpoint-up(sm) {
+      @include font(eyebrow, normal, map-get($theme-colors, primary));
+    }
+
+    @include media-breakpoint-up(md) {
+      @include font(eyebrow, large, map-get($theme-colors, primary));
+    }
+  }
+
+  h1 {
+    @include font(headings, xl, $color-white);
+  }
+
+  p {
+    @include font(body, md, map-get($theme-colors, primary));
+
+    @include media-breakpoint-down(sm) {
+      @include font(body, sm, map-get($theme-colors, primary));
+    }
+  }
+}
+
+.explore {
+  width: 150px;
+  height: 150px;
+  background: $color-white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+
+
+  @include media-breakpoint-only(md) {
+    width: 242px;
+    height: 242px;
+  }
+
+  @include media-breakpoint-up(md) {
+    width: 274px;
+    height: 274px;
+  }
+
+  span {
+    color: $color-black;
+    font-family: $font-family-bellefair;
+    font-size: 2rem;
+    line-height: 37px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    opacity: 0.1;
+    border-radius: 50%;
+    transition-property: width, height;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &::after {
+      width: 150%;
+      height: 150%;
+    }
+  }
+}

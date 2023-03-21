@@ -1,0 +1,243 @@
+// Only add mixins, maps to this file, any typography styles
+// should be in the styles/_typography.scss partial.
+@use "sass:map";
+@use "sass:math";
+@import "./helpers";
+@import "./colors";
+@import "./variables";
+
+// Fonts
+$font-family-barlow: 'Barlow', sans-serif;
+$font-family-barlow-condensed: 'Barlow Condensed', sans-serif;
+$font-family-bellefair: 'Bellefair', serif;
+$font-size-base: 1.25rem; // 20px
+$line-height-base: 1.8; // 36px
+
+$fonts: (
+  headings: (
+    // xxl: (
+    //   "family": $font-family-barlow,
+    //   "font-size-mobile": 48px,
+    //   "font-size-desktop": 60px,
+    //   "font-weight": 700,
+    //   "letter-spacing": normal,
+    //   "line-height-mobile": 1.14,
+    //   "line-height-desktop": 1.14,
+    //   "text-transform": false,
+    // ),
+    xl: (
+      family: $font-family-bellefair,
+      font-size-mobile: 80px,
+      font-size-desktop: 150px,
+      font-weight: 400,
+      letter-spacing: normal,
+      line-height-mobile: 1,
+      line-height-desktop: 1.25,
+      text-transform: uppercase,
+    ),
+    lg: (
+      family: $font-family-bellefair,
+      font-size-mobile: 56px,
+      font-size-desktop: 100px,
+      font-weight: 400,
+      line-height-mobile: 1.14,
+      line-height-desktop: 1.15,
+      text-transform: uppercase,
+    ),
+    // md: (
+    //   "family": $font-family-bellefair,
+    //   "font-size-mobile": 32px,
+    //   "font-size-desktop": 32px,
+    //   "font-weight": 700,
+    //   "letter-spacing": -0.01em,
+    //   "line-height-mobile": 1.25,
+    //   "line-height-desktop": 1.25,
+    //   "text-transform": false,
+    // ),
+    // sm: (
+    //   "family": $font-family-bellefair,
+    //   "font-size-mobile": 24px,
+    //   "font-size-desktop": 24px,
+    //   "font-weight": 700,
+    //   "letter-spacing": normal,
+    //   "line-height-mobile": 1.35,
+    //   "line-height-desktop": 1.35,
+    //   "text-transform": false,
+    // ),
+    // xs: (
+    //   "family": $font-family-bellefair,
+    //   "font-size-mobile": 20px,
+    //   "font-size-desktop": 20px,
+    //   "font-weight": 700,
+    //   "letter-spacing": normal,
+    //   "line-height-mobile": 1.4,
+    //   "line-height-desktop": 1.4,
+    //   "text-transform": false,
+    // ),
+  ),
+  // extra: (
+  //   noMatch: (
+  //     "family": $font-family-barlow,
+  //     "font-size-mobile": 80px,
+  //     "font-size-desktop": 96px,
+  //     "font-weight": 700,
+  //     "letter-spacing": normal,
+  //     "line-height-mobile": 1.08,
+  //     "line-height-desktop": 1.08,
+  //     "text-transform": false,
+  //   ),
+  // ),
+  body: (
+    // xl: (
+    //   "family": $font-family-barlow,
+    //   "font-size-mobile": 20px,
+    //   "font-size-desktop": 20px,
+    //   "font-weight": 400,
+    //   "letter-spacing": normal,
+    //   "line-height-mobile": 1.4,
+    //   "line-height-desktop": 1.4,
+    //   "text-transform": false,
+    // ),
+    // lg: (
+    //   "family": $font-family-barlow,
+    //   "font-size-mobile": 18px,
+    //   "font-size-desktop": 18px,
+    //   "font-weight": 400,
+    //   "letter-spacing": normal,
+    //   "line-height-mobile": 1.45,
+    //   "line-height-desktop": 1.45,
+    //   "text-transform": false,
+    // ),
+    md: (
+      family: $font-family-barlow,
+      font-size-mobile: 16px,
+      font-size-desktop: 18px,
+      font-weight: 400,
+      letter-spacing: normal,
+      line-height-mobile: 1.75,
+      line-height-desktop: 1.7,
+      text-transform: false,
+    ),
+    sm: (
+      family: $font-family-barlow,
+      font-size-mobile: 15px,
+      font-size-desktop: 15px,
+      font-weight: 400,
+      letter-spacing: normal,
+      line-height-mobile: 1.6,
+      line-height-desktop: 1.6,
+      text-transform: false,
+    ),
+  ),
+  eyebrow: (
+    large: (
+      family: $font-family-barlow-condensed,
+      font-size-mobile: 28px,
+      font-size-desktop: 28px,
+      font-weight: 400,
+      letter-spacing: 4.72px,
+      line-height-mobile: 1.1,
+      line-height-desktop: 1.1,
+    ),
+    normal: (
+      family: $font-family-barlow-condensed,
+      font-size-mobile: 20px,
+      font-size-desktop: 20px,
+      font-weight: 400,
+      letter-spacing: 3.38px,
+      line-height-mobile: 1.2,
+      line-height-desktop: 1.2,
+    ),
+    small: (
+      family: $font-family-barlow-condensed,
+      font-size-mobile: 16px,
+      font-size-desktop: 16px,
+      font-weight: 400,
+      letter-spacing: 2.7px,
+      line-height-mobile: 1.1,
+      line-height-desktop: 1.1,
+    )
+  ),
+  navbar: (
+    menu: (
+      family: $font-family-barlow-condensed,
+      font-size-mobile: 16px,
+      font-size-desktop: 16px,
+      font-weight: 400,
+      letter-spacing: 2.7px,
+      line-height-mobile: 1.5,
+      line-height-desktop: 1.18,
+      text-transform: uppercase,
+    ),
+  ),
+);
+
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}
+
+@mixin font(
+  $category: headings,
+  $size: md,
+  $color: map.get($grays, gray-100)
+) {
+  $sizes: map.get($fonts, $category); // = headings, body, navbar
+  $values: map.get($sizes, $size); // = xxl, xl, lg, md, sm, xs
+  $min-font-size: map.get($values, "font-size-mobile");
+  $max-font-size: map.get($values, "font-size-desktop");
+  $min-line-height: map.get($values, "line-height-mobile");
+  $max-line-height: map.get($values, "line-height-desktop");
+  $min-vw: map.get($grid-breakpoints, md);
+  $max-vw: map.get($grid-breakpoints, xxl);
+
+  color: $color;
+  font-family: map.get($values, "family");
+  font-weight: map.get($values, "font-weight");
+  font-size: $min-font-size;
+  line-height: $min-line-height;
+
+  @include media-breakpoint-up(md) {
+    font-size: calc(
+      #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+        ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+    );
+  }
+
+  @include media-breakpoint-up(xxl) {
+    font-size: $max-font-size;
+    line-height: $max-line-height;
+  }
+
+  letter-spacing: map.get($values, "letter-spacing");
+
+  @if map.get($values, "text-transform") {
+    text-transform: map.get($values, "text-transform");
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @include media-breakpoint-down(md) {
+    font-size: 0.875rem; // 14px
+    line-height: 1.8;
+  }
+}
+
+p:only-child {
+  margin-bottom: 0;
+}
+
+// // Default font sizing for headings
+// h2 {
+//   @include font(headings, md);
+//   margin-bottom: 0.5em;
+// }
+
+// h3 {
+//   @include font(headings, sm);
+//   margin-bottom: 1rem;
+// }
