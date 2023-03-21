@@ -50,13 +50,35 @@ export const Destination: React.FC<DestinationProps> = () => {
   );
 
   return (
-    <div className="container d--f fd--c jc-center mx-auto">
-      <div className="mb-8 text-center--sm">
-        <span className={styles.eyebrow}><b>01</b>Pick your destination</span>
-      </div>
+    <div className={classNames(
+      'container',
+      'd-flex',
+      'flex-column',
+      'justify-content-lg-center',
+      'mb-7',
+      'mb-md-8',
+      'mb-lg-0'
+    )}>
+      <span className={classNames(
+        'eyebrow',
+        'text-center',
+        'text-md-start',
+        'mb-4',
+        'mb-md-8',
+        'mt-3',
+        'mt-md-8',
+        'mt-lg-0',
+      )}><b>01</b>Pick your destination</span>
 
-      <div className="grid px-1 px-md-0">
-        <div className={classNames(styles.imageWrapper, 'col-6_sm-12', 'd--f', 'jc-center', 'ai-center')}>
+      <div className={classNames(
+        'd-flex',
+        'flex-column',
+        'flex-lg-row',
+        'align-items-center',
+        'justify-content-lg-between',
+        'col-12',
+      )}>
+        <div className={classNames(styles.imageWrapper, 'ms-lg-7', 'mb-3', 'mb-md-7', 'mb-lg-0')}>
           <img
             key={activeTab}
             src={data[activeTab].image}
@@ -65,41 +87,52 @@ export const Destination: React.FC<DestinationProps> = () => {
           />
         </div>
 
-        <div className="col-6_sm-12 d--f jc-center ai-center">
-          <div className={styles.box}>
-            <Tabs
-              defaultIndex={activeTab}
-              onSelect={(index) => setActiveTab(index)}
-              selectedTabClassName="is-selected"
-              selectedTabPanelClassName="is-selected"
-            >
-              <TabList className="d--f jc-center jc-md-start">
-                {data.map((item) => <Tab key={item.id}>{item.title}</Tab>)}
-              </TabList>
+        <div className={styles.box}>
+          <Tabs
+            defaultIndex={activeTab}
+            onSelect={(index) => setActiveTab(index)}
+            selectedTabClassName="is-selected"
+            selectedTabPanelClassName="is-selected pt-3 pt-mb-4"
+          >
+            <TabList className={classNames(
+              'd-flex',
+              'justify-content-center',
+              'justify-content-lg-start',
+            )}>
+              {data.map((item) => <Tab key={item.id}>{item.title}</Tab>)}
+            </TabList>
 
-              {
-                data.map((item) => (
-                  <TabPanel key={item.id} className="text-center--md pt-4">
-                    <h2 className="mb-2">{item.title}</h2>
-                    <p className="mb-7">{item.description}</p>
-                    <hr className="mb-3" />
+            {
+              data.map((item) => (
+                <TabPanel key={item.id} className="text-center text-lg-start">
+                  <h2 className="mb-2">{item.title}</h2>
+                  <p className="mb-4 mb-md-6 mb-lg-7">{item.description}</p>
+                  <hr className="mb-4 mb-3" />
 
-                    <div className="d--f jc-evenly jc-md-start">
-                      <div className={classNames(styles.stadistics, 'mr-md-9')}>
-                        <h6 className="mb-2">avg. distance</h6>
-                        <span className={styles.eyebrow}>{item.distance}</span>
-                      </div>
-
-                      <div className={styles.stadistics}>
-                        <h6 className="mb-2">est. travel time</h6>
-                        <span className={styles.eyebrow}>{item.estTime}</span>
-                      </div>
+                  <div className={classNames(
+                    'd-flex',
+                    'gap-4',
+                    'gap-md-0',
+                    'gap-lg-10',
+                    'flex-column',
+                    'flex-md-row',
+                    'justify-content-md-evenly',
+                    'justify-content-lg-start',
+                  )}>
+                    <div className={styles.stadistics}>
+                      <span className="sub-header-small d-block mb-2">avg. distance</span>
+                      <span className="sub-header-large">{item.distance}</span>
                     </div>
-                  </TabPanel>
-                ))
-              }
-            </Tabs>
-          </div>
+
+                    <div className={styles.stadistics}>
+                      <span className="sub-header-small d-block mb-2">est. travel time</span>
+                      <span className="sub-header-large">{item.estTime}</span>
+                    </div>
+                  </div>
+                </TabPanel>
+              ))
+            }
+          </Tabs>
         </div>
       </div>
     </div>

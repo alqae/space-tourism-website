@@ -25,71 +25,106 @@ export const Technology: React.FC<TechnologyProps> = () => {
           portrait: LaunchVehiclePortrait,
         },
         name: 'Launch Vehicle',
-        title: 'The Terminology…',
+        position: 'The Terminology…',
         description: 'A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth\'s surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it\'s quite an awe-inspiring sight on the launch pad!'
       },
       {
         id: 2,
         image: {
-          landscape: SpaceCapsuleLandscape,
-          portrait: SpaceCapsulePortrait,
+          landscape: SpaceportLandscape,
+          portrait: SpaceportPortrait,
         },
         name: 'Spaceport',
-        title: 'The Terminology…',
+        position: 'The Terminology…',
         description: 'A spaceport or cosmodrome is a site for launching (or receiving) spacecraft, by analogy to the seaport for ships or airport for aircraft. Based in the famous Cape Canaveral, our spaceport is ideally situated to take advantage of the Earth’s rotation for launch.'
       },
       {
         id: 3,
         image: {
-          landscape: SpaceportLandscape,
-          portrait: SpaceportPortrait,
+          landscape: SpaceCapsuleLandscape,
+          portrait: SpaceCapsulePortrait,
         },
         name: 'Space Capsule',
-        title: 'The Terminology…',
+        position: 'The Terminology…',
         description: 'A space capsule is an often-crewed spacecraft that uses a blunt-body reentry capsule to reenter the Earth\'s atmosphere without wings. Our capsule is where you\'ll spend your time during the flight. It includes a space gym, cinema, and plenty of other activities to keep you entertained.'
       },
     ]
   );
 
   return (
-    <div className="container fd--lg--r mx-auto grid">
-      <div className="col-12 my-4 my-md-0 mb-md-6 mb-lg-0 text-center--sm">
-        <span className={styles.eyebrow}><b>03</b>Space launch 101</span>
-      </div>
+    <div className={classNames(
+      'container',
+      'd-flex',
+      'flex-column',
+      'justify-content-lg-center',
+      'mb-5',
+      'mb-lg-0',
+    )}>
+      <span className={classNames(
+        'col-12',
+        'eyebrow',
+        'd-block',
+        'mt-3',
+        'mb-4',
+        'mt-md-5',
+        'mb-md-7',
+        'mt-lg-0',
+        'mb-lg-3',
+      )}><b>03</b>Space launch 101</span>
 
-      <div className={classNames(styles.imageWrapper, 'col-6_sm-12', 'fd--lg--rr')}>
-        <img
-          key={activeTab}
-          src={data[activeTab].image[isMobile ? 'landscape' : 'portrait']}
-          alt={data[activeTab].name}
-          style={{ animation: 'flash 1.5s .5s' }}
-        />
-      </div>
-
-      <div className={classNames(styles.boxWrapper, 'col-6_sm-12')}>
-        <div className={classNames(styles.navigationWrapper)}>
-          {
-            data.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(index)}
-                className={
-                  classNames(
+      <div className="d-flex flex-column-reverse flex-lg-row">
+        <div className={classNames(
+          'col',
+          'd-flex',
+          'flex-column',
+          'flex-lg-row',
+          'align-items-center',
+        )}>
+          <div className={classNames(
+            'me-lg-10',
+            'mb-3',
+            'mt-4',
+            'mb-md-5',
+            'mt-md-7',
+            'my-lg-0',
+            'd-flex',
+            'gap-2',
+            'gap-lg-4',
+            'flex-row',
+            'flex-lg-column',
+            'justify-content-center',
+            'justify-content-lg-start',
+          )}>
+            {
+              data.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(index)}
+                  className={classNames(
                     styles.navigationButton,
-                    { [styles.active]: activeTab === index }
-                  )
-                }
-              >
-                <span>{index + 1}</span>
-              </button>
-            ))
-          }
+                    { [styles.active]: activeTab === index },
+                  )}
+                >
+                  <span>{index + 1}</span>
+                </button>
+              ))
+            }
+          </div>
+
+          <div className={classNames(styles.box, 'text-center', 'text-lg-start')}>
+            <span className={styles.position}>{data[activeTab].position}</span>
+            <h3 className="mb-2 mb-md-3">{data[activeTab].name}</h3>
+            <p>{data[activeTab].description}</p>
+          </div>
         </div>
 
-        <div className={classNames(styles.box, 'text-center--md', 'mx-auto')}>
-          <span className={styles.eyebrow}>{data[activeTab].title}</span>
-          <h2 className="mb-2 mb-md-3">{data[activeTab].name}</h2>
-          <p>{data[activeTab].description}</p>
+        <div className={classNames(styles.imageWrapper, 'col')}>
+          <img
+            key={activeTab}
+            src={data[activeTab].image[isMobile ? 'landscape' : 'portrait']}
+            alt={data[activeTab].name}
+            style={{ animation: 'flash 1.5s .5s' }}
+          />
         </div>
       </div>
     </div>

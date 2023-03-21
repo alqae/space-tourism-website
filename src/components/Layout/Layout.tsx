@@ -2,25 +2,25 @@ import React from 'react';
 import styles from './layout.module.scss';
 import { Outlet, useMatch } from 'react-router-dom';
 
-import { useMediaQuery } from '../../HOC';
-import { Navbar } from '../Navbar';
+import { useMediaQuery } from '@/HOC';
+import { Navbar } from '@components/Navbar';
 
 // Crew
-import CrewMobile from '../../assets/backgrounds/background-crew-mobile.jpg';
-import CrewTablet from '../../assets/backgrounds/background-crew-tablet.jpg';
-import CrewDesktop from '../../assets/backgrounds/background-crew-desktop.jpg';
+import CrewMobile from '@assets/backgrounds/background-crew-mobile.jpg';
+import CrewTablet from '@assets/backgrounds/background-crew-tablet.jpg';
+import CrewDesktop from '@assets/backgrounds/background-crew-desktop.jpg';
 // Destination
-import DestinationMobile from '../../assets/backgrounds/background-destination-mobile.jpg';
-import DestinationTablet from '../../assets/backgrounds/background-destination-tablet.jpg';
-import DestinationDesktop from '../../assets/backgrounds/background-destination-desktop.jpg';
+import DestinationMobile from '@assets/backgrounds/background-destination-mobile.jpg';
+import DestinationTablet from '@assets/backgrounds/background-destination-tablet.jpg';
+import DestinationDesktop from '@assets/backgrounds/background-destination-desktop.jpg';
 // Technology
-import TechnologyMobile from '../../assets/backgrounds/background-technology-mobile.jpg';
-import TechnologyTablet from '../../assets/backgrounds/background-technology-tablet.jpg';
-import TechnologyDesktop from '../../assets/backgrounds/background-technology-desktop.jpg';
+import TechnologyMobile from '@assets/backgrounds/background-technology-mobile.jpg';
+import TechnologyTablet from '@assets/backgrounds/background-technology-tablet.jpg';
+import TechnologyDesktop from '@assets/backgrounds/background-technology-desktop.jpg';
 // Home
-import HomeMobile from '../../assets/backgrounds/background-home-mobile.jpg';
-import HomeTablet from '../../assets/backgrounds/background-home-tablet.jpg';
-import HomeDesktop from '../../assets/backgrounds/background-home-desktop.jpg';
+import HomeMobile from '@assets/backgrounds/background-home-mobile.jpg';
+import HomeTablet from '@assets/backgrounds/background-home-tablet.jpg';
+import HomeDesktop from '@assets/backgrounds/background-home-desktop.jpg';
 
 export interface LayoutProps { }
 

@@ -3,6 +3,7 @@ ul[role="tablist"] {
   list-style-type: none;
   display: flex;
   margin: 0;
+  padding: 0;
 }
 
 .react-tabs__tab {
@@ -70,4 +71,11 @@ div[role="tabpanel"] {
   &.is-selected {
     transform: translateX(0%);
   }
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: $color-dark-gray;
+  margin: 0;
 }

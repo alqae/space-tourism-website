@@ -57,32 +57,31 @@ p:only-child {
   margin-bottom: 0;
 }
 
-// Default font sizing for headings
+/// Default font sizing for headings
+h1 {
+  @include font(headings, xl);
+}
+
 h2 {
-  // @include font(headings, md);
-  margin-bottom: 0.5em;
+  @include font(headings, lg);
 }
 
 h3 {
-  // @include font(headings, sm);
-  margin-bottom: 1rem;
+  @include font(headings, md);
 }
 
-// blockquote {
-//   // @include font(blockquote, all, $color-black);
-
-//   + figcaption {
-//     // @include font(bodycopy, md, $mc-blue);
-//   }
+// h4 {
+//   @include font(headings, sm);
 // }
 
-// Spacing between paragraphs and headings (for WYSIWYG content)
-// p {
-//   + h2,
-//   + h3,
-//   + h4,
-//   + h5,
-//   + h6 {
-//     @include mt(8);
-//   }
-// }
+h5 {
+  @include font(headings, xs, map-get($theme-colors, primary));
+}
+
+span.sub-header-large {
+  @include font(subheadings, large);
+}
+
+span.sub-header-small {
+  @include font(subheadings, small, map-get($theme-colors, primary));
+}

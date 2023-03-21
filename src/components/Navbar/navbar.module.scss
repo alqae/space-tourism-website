@@ -27,6 +27,8 @@
     flex: 1;
     margin-right: -2%;
     margin-left: 64px;
+    background-color: $color-white;
+    opacity: 0.25;
 
     @include media-breakpoint-down(md) {
       display: none;
@@ -121,7 +123,7 @@
       }
 
       span {
-        // @include font(navbar, menu, $color-white);
+        @include font(navbar, menu, $color-white);
 
         b {
           font-weight: bold;

@@ -1,42 +1,9 @@
 @import "../../styles/init";
 
-.wrapper {
-  flex-direction: row-reverse;
-  width: 100%;
-
-  @include media-breakpoint-down(md) {
-    flex-direction: column-reverse;
-  }
-
-  @include media-breakpoint-down(sm) {
-    flex-direction: column;
-  }
-}
-
-span.eyebrow:has(b) {
-  font-family: $font-family-barlow-condensed;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 34px;
-  color: $color-white;
-  letter-spacing: 4.725px;
-  text-transform: uppercase;
-
-  b {
-    font-weight: 700;
-    margin-right: 28px;
-    opacity: 0.25;
-  }
-}
-
 .imageWrapper {
   @include media-breakpoint-down(sm) {
-    margin-bottom: 33px;
-    border-bottom: 1px solid #383B4B;
     height: 222px;
     width: 100%;
-    text-align: center;
   }
 
   img {
@@ -65,40 +32,21 @@ span.eyebrow:has(b) {
   }
 }
 
+.position {
+  @include font(position, crew);
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
 .box {
-
-  @include media-breakpoint-only(md) {
-    margin-bottom: 40px;
-  }
-
-  span.eyebrow {
-    display: block;
-    // @include font(eyebrow, small, map-get($theme-colors, primary));
-
-    @include media-breakpoint-up(sm) {
-      // @include font(eyebrow, normal, map-get($theme-colors, primary));
-    }
-
-    @include media-breakpoint-up(md) {
-      // @include font(eyebrow, large, map-get($theme-colors, primary));
-    }
-  }
-
-  h2 {
-    // @include font(headings, lg, $color-white);
-  }
-
   p {
-    // @include font(body, md, map-get($theme-colors, primary));
-
-    @include media-breakpoint-down(sm) {
-      // @include font(body, sm, map-get($theme-colors, primary));
+    @include media-breakpoint-up(md) {
+      max-width: 450px;
     }
 
-    @include media-breakpoint-up(sm) {
-      max-width: 445px;
-      display: inline-block;
+    @include media-breakpoint-only(xs) {
+      padding-right: 12px;
+      padding-left: 12px;
     }
   }
 }
-

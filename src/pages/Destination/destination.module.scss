@@ -1,50 +1,17 @@
 @import "../../styles/init";
 
-.imageWrapper {
-  margin-bottom: 26px;
-
+.imageWrapper img {
   @include media-breakpoint-down(sm) {
-    img {
-      max-width: 170px;
-    }
+    max-width: 170px;
   }
 
   @include media-breakpoint-up(sm) {
-    margin-bottom: 56px;
-
-    img {
-      max-width: 300px;
-    }
+    max-width: 300px;
   }
 
   @include media-breakpoint-up(md) {
-    margin-bottom: 0;
-
-    img {
-      max-width: 100%;
-    }
+    max-width: 100%;
   }
-}
-
-span.eyebrow:has(b) {
-  font-family: $font-family-barlow-condensed;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 34px;
-  color: #FFFFFF;
-  letter-spacing: 4.725px;
-  text-transform: uppercase;
-
-  b {
-    font-weight: 700;
-    margin-right: 28px;
-    opacity: 0.25;
-  }
-}
-
-h6 {
-  // @include font(eyebrow, small, map-get($theme-colors, primary));
 }
 
 .box {
@@ -52,30 +19,5 @@ h6 {
 
   @include media-breakpoint-up(sm) {
     max-width: 445px;
-  }
-
-  span.eyebrow {
-    display: block;
-    // @include font(eyebrow, small, map-get($theme-colors, primary));
-
-    @include media-breakpoint-up(sm) {
-      // @include font(eyebrow, normal, map-get($theme-colors, primary));
-    }
-
-    @include media-breakpoint-up(md) {
-      // @include font(eyebrow, large, map-get($theme-colors, primary));
-    }
-  }
-
-  h2 {
-    // @include font(headings, lg, $color-white);
-  }
-
-  p {
-    // @include font(body, md, map-get($theme-colors, primary));
-
-    @include media-breakpoint-down(sm) {
-      // @include font(body, sm, map-get($theme-colors, primary));
-    }
   }
 }

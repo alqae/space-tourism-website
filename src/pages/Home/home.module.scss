@@ -4,31 +4,6 @@
   @include media-breakpoint-up(sm) {
     max-width: 445px;
   }
-
-  span.eyebrow {
-    display: block;
-    // @include font(eyebrow, small, map-get($theme-colors, primary));
-
-    @include media-breakpoint-up(sm) {
-      // @include font(eyebrow, normal, map-get($theme-colors, primary));
-    }
-
-    @include media-breakpoint-up(md) {
-      // @include font(eyebrow, large, map-get($theme-colors, primary));
-    }
-  }
-
-  h1 {
-    // @include font(headings, xl, $color-white);
-  }
-
-  p {
-    // @include font(body, md, map-get($theme-colors, primary));
-
-    @include media-breakpoint-down(sm) {
-      // @include font(body, sm, map-get($theme-colors, primary));
-    }
-  }
 }
 
 .explore {
@@ -36,12 +11,9 @@
   height: 150px;
   background: $color-white;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   text-decoration: none;
   position: relative;
-
 
   @include media-breakpoint-only(md) {
     width: 242px;
@@ -54,11 +26,15 @@
   }
 
   span {
-    color: $color-black;
     font-family: $font-family-bellefair;
-    font-size: 2rem;
+    color: $color-black;
     line-height: 37px;
+    font-size: 2rem;
     text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     @include media-breakpoint-down(sm) {
       font-size: 1.25rem;
