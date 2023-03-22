@@ -1,5 +1,13 @@
 import React from 'react';
 
+export const usePrevious = (value: any) => {
+  const ref = React.useRef();
+  React.useEffect(() => {
+    ref.current = value; //assign the value of ref to the argument
+  },[value]); //this code will run when the value of 'value' changes
+  return ref.current; //in the end, return the current ref value.
+}
+
 export const useMediaQuery = (query: string): boolean => {
   const getMatches = (query: string): boolean => {
     // Prevents SSR issues

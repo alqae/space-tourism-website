@@ -1,12 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './destination.module.scss';
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
+import { AnimationProps, motion } from 'framer-motion';
+
+import { Tabs } from '@components/Tabs';
 
 import Europa from '@assets/destination/image-europa.png';
 import Titan from '@assets/destination/image-titan.png';
 import Moon from '@assets/destination/image-moon.png';
 import Mars from '@assets/destination/image-mars.png';
+
+const transition: AnimationProps['transition'] = {
+  duration: 0.8,
+  ease: [0.6, -0.05, 0.01, 0.99],
+};
 
 export interface DestinationProps { }
 
@@ -49,6 +56,14 @@ export const Destination: React.FC<DestinationProps> = () => {
     ]
   );
 
+  React.useEffect(() => {
+    document.title = `${data[activeTab].title} | Space Travel`;
+
+    return () => {
+      document.title = 'Space Travel';
+    };
+  }, [activeTab, data]);
+
   return (
     <div className={classNames(
       'container',
@@ -59,16 +74,22 @@ export const Destination: React.FC<DestinationProps> = () => {
       'mb-md-8',
       'mb-lg-0'
     )}>
-      <span className={classNames(
-        'eyebrow',
-        'text-center',
-        'text-md-start',
-        'mb-4',
-        'mb-md-8',
-        'mt-3',
-        'mt-md-8',
-        'mt-lg-0',
-      )}><b>01</b>Pick your destination</span>
+      <motion.span
+        className={classNames(
+          'eyebrow',
+          'text-center',
+          'text-md-start',
+          'mb-4',
+          'mb-md-8',
+          'mt-3',
+          'mt-md-8',
+          'mt-lg-0',
+        )}
+        animate={{ opacity: [0, 1], y: [-30, 0] }}
+        transition={transition}
+      >
+        <b>01</b>Pick your destination
+      </motion.span>
 
       <div className={classNames(
         'd-flex',
@@ -79,32 +100,24 @@ export const Destination: React.FC<DestinationProps> = () => {
         'col-12',
       )}>
         <div className={classNames(styles.imageWrapper, 'ms-lg-7', 'mb-3', 'mb-md-7', 'mb-lg-0')}>
-          <img
+          <motion.img
             key={activeTab}
-            src={data[activeTab].image}
             alt={data[activeTab].title}
-            style={{ animation: 'flash 1.5s .5s' }}
+            src={data[activeTab].image}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={transition}
           />
         </div>
 
         <div className={styles.box}>
           <Tabs
-            defaultIndex={activeTab}
-            onSelect={(index) => setActiveTab(index)}
-            selectedTabClassName="is-selected"
-            selectedTabPanelClassName="is-selected pt-3 pt-mb-4"
-          >
-            <TabList className={classNames(
-              'd-flex',
-              'justify-content-center',
-              'justify-content-lg-start',
-            )}>
-              {data.map((item) => <Tab key={item.id}>{item.title}</Tab>)}
-            </TabList>
-
-            {
-              data.map((item) => (
-                <TabPanel key={item.id} className="text-center text-lg-start">
+            selectedTab={activeTab}
+            onSelectedTab={(index) => setActiveTab(index)}
+            items={data.map((item) => ({
+              route: `#${item.title}`,
+              name: item.title,
+              render: () => (
+                <div key={item.id} className="text-center text-lg-start pt-3 pt-mb-4">
                   <h2 className="mb-2">{item.title}</h2>
                   <p className="mb-4 mb-md-6 mb-lg-7">{item.description}</p>
                   <hr className="mb-4 mb-3" />
@@ -129,10 +142,10 @@ export const Destination: React.FC<DestinationProps> = () => {
                       <span className="sub-header-large">{item.estTime}</span>
                     </div>
                   </div>
-                </TabPanel>
-              ))
-            }
-          </Tabs>
+                </div>
+              ),
+            }))}
+          />
         </div>
       </div>
     </div>

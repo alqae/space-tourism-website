@@ -1,16 +1,27 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './crew.module.scss';
+import { AnimationProps, motion, MotionProps, useDragControls } from 'framer-motion';
+
+import { useMediaQuery, usePrevious } from '@/HOC';
 
 import MarkShuttleworth from '@assets/crew/image-mark-shuttleworth.png';
 import AnoushehAnsari from '@assets/crew/image-anousheh-ansari.png';
 import DouglasHurley from '@assets/crew/image-douglas-hurley.png';
 import VictorGlover from '@assets/crew/image-victor-glover.png';
 
+const transition: AnimationProps['transition'] = {
+  duration: 0.8,
+  ease: [0.6, -0.05, 0.01, 0.99],
+};
+
 export interface CrewProps { }
 
 export const Crew: React.FC<CrewProps> = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const [activeTab, setActiveTab] = React.useState(0);
+  const previousActiveTab = usePrevious(activeTab) ?? 0;
+  const controls = useDragControls()
   const [data] = React.useState(
     [
       {
@@ -44,64 +55,106 @@ export const Crew: React.FC<CrewProps> = () => {
     ]
   );
 
+  const dragProps: Partial<MotionProps> = {
+    // drag: 'x',
+    drag: isMobile ? 'x' : false,
+    // draggable: isMobile,
+    dragSnapToOrigin: true,
+    dragControls: controls,
+    onDragEnd: (_, info) => {
+      if (info.offset.x > 50 && !!activeTab) {
+        setActiveTab(activeTab - 1);
+      } else if (info.offset.x < -50 && activeTab < data.length - 1) {
+        setActiveTab(activeTab + 1);
+      }
+    },
+    transition: { duration: 0.4, ease: 'linear' },
+    animate: { x: [activeTab > previousActiveTab ? 100 : -100, 0], opacity: [0, 1] },
+  }
+
   return (
     <div className="container d-flex flex-column flex-lg-row">
-      <span className={classNames(
-        'eyebrow',
-        'd-block',
-        'd-md-none',
-        'mb-4',
-        'mt-3',
-        'text-center',
-      )}><b>02</b>Meet your crew</span>
+      <motion.span
+        className={classNames(
+          'eyebrow',
+          'd-block',
+          'd-md-none',
+          'mb-4',
+          'mt-3',
+          'text-center',
+        )}
+        animate={{ opacity: [0, 1], y: [-100, 0] }}
+        transition={transition}
+      >
+        <b>02</b>Meet your crew
+      </motion.span>
 
-      <div className={classNames(
-        'col-12',
-        'd-flex',
-        'flex-column',
-        'flex-column-reverse',
-        'flex-md-column',
-        'flex-lg-row',
-        'justify-content-between',
-        'mt-lg-8',
-        'mt-md-5',
-      )}>
+      <motion.div
+        key={activeTab}
+        {...dragProps}
+        drag={isMobile ? false: 'x'}
+        className={classNames(
+          'col-12',
+          'd-flex',
+          'flex-column',
+          'flex-column-reverse',
+          'flex-md-column',
+          'flex-lg-row',
+          'justify-content-between',
+          'mt-lg-8',
+          'mt-md-5',
+        )}
+      >
         <div className="d-flex flex-column-reverse flex-md-column">
-          <span className={classNames(
-            'eyebrow',
-            'd-none',
-            'd-md-block',
-            'mb-4',
-            'mb-md-8',
-            'mb-lg-20',
-          )}><b>02</b>Meet your crew</span>
+          <motion.span
+            className={classNames(
+              'eyebrow',
+              'd-none',
+              'd-md-block',
+              'mb-4',
+              'mb-md-8',
+              'mb-lg-20',
+            )}
+            animate={{ opacity: [0, 1], x: [-100, 0] }}
+            transition={transition}
+          >
+            <b>02</b>Meet your crew
+          </motion.span>
 
-          <div className={classNames(
-            styles.box,
-            'd-flex',
-            'flex-column',
-            'align-items-center',
-            'align-items-lg-start',
-            'text-center',
-            'text-lg-start',
-            'mb-lg-10',
-          )}>
+          <motion.div
+            key={activeTab}
+            {...dragProps}
+            className={classNames(
+              styles.box,
+              'd-flex',
+              'flex-column',
+              'align-items-center',
+              'align-items-lg-start',
+              'text-center',
+              'text-lg-start',
+              'mb-lg-10',
+            )}
+          >
             <span className={classNames(styles.position, 'mb-1', 'mb-lg-2')}>{data[activeTab].position}</span>
             <h3 className="mb-2 mb-lg-3">{data[activeTab].name}</h3>
             <p>{data[activeTab].description}</p>
-          </div>
+          </motion.div>
 
-          <div className={classNames(
-            'd-flex',
-            'justify-content-center',
-            'justify-content-lg-start',
-            'gap-2',
-            'gap-lg-3',
-            'py-4',
-            'py-md-5',
-            'pb-lg-0',
-            'mb-lg-10',
-          )}>
+          <motion.div
+            className={classNames(
+              'd-flex',
+              'justify-content-center',
+              'justify-content-lg-start',
+              'gap-2',
+              'gap-lg-3',
+              'py-4',
+              'py-md-5',
+              'pb-lg-0',
+              'mb-lg-10',
+            )}
+            animate={{ opacity: [0, 1], x: [-100, 0] }}
+            transition={transition}
+          >
             {data.map((item, index) => (
               <div
                 key={item.id}
@@ -109,19 +162,23 @@ export const Crew: React.FC<CrewProps> = () => {
                 onClick={() => setActiveTab(index)}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        <div className={classNames(styles.imageWrapper, 'text-center', 'text-lg-start')}>
-          <img
+        <motion.div
+          key={activeTab}
+          {...dragProps}
+          className={classNames(styles.imageWrapper, 'text-center', 'text-lg-start')}
+        >
+          <motion.img
             key={activeTab}
+            animate={{ opacity: [0, 1], scale: [0.8, 1] }}
             src={data[activeTab].avatar}
             alt={data[activeTab].name}
-            style={{ animation: 'flash 1.5s .5s' }}
           />
-          <hr className="d-block d-md-none" /> {/* Mobile */}
-        </div>
-      </div>
+          <hr className="d-block d-md-none" />
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

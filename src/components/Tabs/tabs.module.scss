@@ -1,3 +1,52 @@
-.Tabs {
-  
+@import "../../styles/init";
+
+.tabs {
+  overflow: hidden;
+
+  .header {
+    display: flex;
+
+    .tab {
+      padding-bottom: 12px;
+      user-select: none;
+      font-family: $font-family-barlow-condensed;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 19px;
+      letter-spacing: 2.7px;
+      text-transform: uppercase;
+      color: map-get($theme-colors, primary);
+      transition-property: color;
+      transition-duration: 200ms;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        background-color: $color-white;
+        transition-property: right;
+        transition-duration: 200ms;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        right: 100%;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.active {
+        color: $color-white;
+
+        &::after {
+          right: 0;
+        }
+      }
+    }
+  }
 }
+ 

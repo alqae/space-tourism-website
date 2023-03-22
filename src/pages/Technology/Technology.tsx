@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './technology.module.scss';
+import { motion, AnimationProps, useDragControls } from 'framer-motion';
 
-import { useMediaQuery } from '@/HOC';
+import { useMediaQuery, usePrevious } from '@/HOC';
 
 import LaunchVehicleLandscape from '@assets/technology/image-launch-vehicle-landscape.jpg';
 import LaunchVehiclePortrait from '@assets/technology/image-launch-vehicle-portrait.jpg';
@@ -11,11 +12,20 @@ import SpaceCapsulePortrait from '@assets/technology/image-space-capsule-portrai
 import SpaceportLandscape from '@assets/technology/image-spaceport-landscape.jpg';
 import SpaceportPortrait from '@assets/technology/image-spaceport-portrait.jpg';
 
+const transition: AnimationProps['transition'] = {
+  duration: 0.8,
+  ease: [0.6, -0.05, 0.01, 0.99],
+};
+
 export interface TechnologyProps { }
 
 export const Technology: React.FC<TechnologyProps> = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const mainAxis = isMobile ? 'x' : 'y';
+
   const [activeTab, setActiveTab] = React.useState(0);
+  const previousActiveTab = usePrevious(activeTab) ?? 0;
+  const controls = useDragControls();
   const [data] = React.useState(
     [
       {
@@ -60,19 +70,42 @@ export const Technology: React.FC<TechnologyProps> = () => {
       'mb-5',
       'mb-lg-0',
     )}>
-      <span className={classNames(
-        'col-12',
-        'eyebrow',
-        'd-block',
-        'mt-3',
-        'mb-4',
-        'mt-md-5',
-        'mb-md-7',
-        'mt-lg-0',
-        'mb-lg-3',
-      )}><b>03</b>Space launch 101</span>
+      <motion.span
+        className={classNames(
+          'col-12',
+          'eyebrow',
+          'd-block',
+          'mt-3',
+          'mb-4',
+          'mt-md-5',
+          'mb-md-7',
+          'mt-lg-0',
+          'mb-lg-3',
+          'text-center',
+          'text-md-start',
+        )}
+        animate={{ [isMobile ? 'y' : 'x']: [-100, 0] }}
+        transition={transition}
+      >
+        <b>03</b>Space launch 101
+      </motion.span>
 
-      <div className="d-flex flex-column-reverse flex-lg-row">
+      <motion.div
+        key={activeTab}
+        drag={isMobile ? false : 'y'}
+        draggable={isMobile}
+        dragSnapToOrigin
+        dragControls={controls}
+        onDragEnd={(_, info) => {
+          if (info.offset.y > 50 && !!activeTab) {
+            setActiveTab(activeTab - 1);
+          } else if (info.offset.y < -50 && activeTab < data.length - 1) {
+            setActiveTab(activeTab + 1);
+          }
+        }}
+        transition={{ duration: 0.4, ease: 'linear' }}
+        className="d-flex flex-column-reverse flex-lg-row"
+      >
         <div className={classNames(
           'col',
           'd-flex',
@@ -111,22 +144,50 @@ export const Technology: React.FC<TechnologyProps> = () => {
             }
           </div>
 
-          <div className={classNames(styles.box, 'text-center', 'text-lg-start')}>
+          <motion.div
+            key={activeTab}
+            drag={isMobile ? 'x' : false}
+            draggable={isMobile}
+            dragSnapToOrigin
+            dragControls={controls}
+            onDragEnd={(_, info) => {
+              if (info.offset.x > 50 && !!activeTab) {
+                setActiveTab(activeTab - 1);
+              } else if (info.offset.x < -50 && activeTab < data.length - 1) {
+                setActiveTab(activeTab + 1);
+              }
+            }}
+            transition={{ duration: 0.4, ease: 'linear' }}
+            animate={{ [mainAxis]: [activeTab > previousActiveTab ? 100 : -100, 0], opacity: [0, 1] }}
+            className={classNames(styles.box, 'text-center', 'text-lg-start')}
+          >
             <span className={styles.position}>{data[activeTab].position}</span>
             <h3 className="mb-2 mb-md-3">{data[activeTab].name}</h3>
             <p>{data[activeTab].description}</p>
-          </div>
+          </motion.div>
         </div>
 
         <div className={classNames(styles.imageWrapper, 'col')}>
-          <img
+          <motion.img
             key={activeTab}
-            src={data[activeTab].image[isMobile ? 'landscape' : 'portrait']}
+            drag={mainAxis}
+            draggable
+            dragSnapToOrigin
+            dragControls={controls}
+            onDragEnd={(_, info) => {
+              if (info.offset.x > 50 && !!activeTab) {
+                setActiveTab(activeTab - 1);
+              } else if (info.offset.x < -50 && activeTab < data.length - 1) {
+                setActiveTab(activeTab + 1);
+              }
+            }}
             alt={data[activeTab].name}
-            style={{ animation: 'flash 1.5s .5s' }}
+            src={data[activeTab].image[isMobile ? 'landscape' : 'portrait']}
+            transition={{ duration: 0.4, ease: 'linear' }}
+            animate={{ [mainAxis]: [activeTab > previousActiveTab ? 100 : -100, 0], opacity: [0, 1] }}
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
